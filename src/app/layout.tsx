@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import {DM_Sans} from "next/font/google"
+import { DM_Sans } from "next/font/google"
 import "./globals.css";
+import Providers from "./providers";
 
 const dmSans = DM_Sans({
-  subsets:["latin"],
+  subsets: ["latin"],
   display: "swap",//browser will use default font until DM sans is fully loaded
-  variable:"--font-dm-sans",
+  variable: "--font-dm-sans",
 })
 
 export const metadata: Metadata = {
@@ -23,7 +24,8 @@ export default function RootLayout({
       <body
         className={`${dmSans.className}`}
       >
-        {children}
+        <Providers>{children}</Providers>
+
       </body>
     </html>
   );
