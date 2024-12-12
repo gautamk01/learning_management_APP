@@ -1,43 +1,39 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+
+import { Bell, BookOpen } from "lucide-react";
+import Link from "next/link";
+
 
 const NonDashboardNavbar = () => {
-    const [count, setCount] = useState(0);
-    const inputref = useRef(0);
-    const inputRef = useRef<HTMLInputElement | null>(null);
-    useEffect(() => {
-        if (inputRef.current) {
-            inputRef.current.focus();
-        }
-    }, [count, inputRef]);
-
-
     return (
-        <div className=" w-full flex justify-center gap-10 flex-col items-center">
-            <div className=" text-6xl">Count : {count} </div>
-            <button
-                className=" bg-black text-white-50 p-10 w-60"
-                onClick={() => {
-                    setCount(count + 1);
-                }}
-            >
-                increament
-            </button>
-            <button
-                className=" bg-black text-white-50 p-10 w-60"
-                onClick={() => {
-                    setCount(count - 1);
-                    inputref.current += 1;
-                    console.log(inputref);
-                }}
-            >
-                decreament
-            </button>
-
-            <input ref={inputRef} type="text" placeholder="Focus Me !" />
-            <button className=" bg-black text-white-50 p-10 w-60">Focus Input</button>
-        </div>
-    );
+        <nav className="nondashboard-navbar">
+            <div className="nondashboard-navbar__container">
+                <div className="nondashboard-navbar__search">
+                    <Link href="/" className="nondashboard-navbar__brand">
+                        EDROH
+                    </Link>
+                    <div className="flex items-center gap-4">
+                        <div className=" relative group">
+                            <Link href="/search" className="nondashboard-navbar__search-input">
+                                <span className="hidden sm:inline"> Search Course</span>
+                                <span className="sm:hidden"> Search</span>
+                            </Link>
+                            <BookOpen
+                                className="nondashboard-navbar__search-icon"
+                            ></BookOpen>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="nondashboard-navbar__actions">
+                <button className="nondashboard-navbar__notifications-button">
+                    <span className="nondashboard-navbar__notifications-indicator"></span>
+                    <Bell className="nondashboard-navbar__notifications-icon" />
+                </button>
+                {/* SIgn in Button */}
+            </div>
+        </nav >
+    )
 };
 
 export default NonDashboardNavbar;
